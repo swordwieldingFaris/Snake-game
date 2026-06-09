@@ -1,0 +1,30 @@
+@startuml
+
+title Snake Game: Classic Remastered - Use Case Diagram
+
+left to right direction
+
+actor Player
+
+rectangle "Snake Game System" {
+  Player --> (Start Game)
+  Player --> (Move Snake)
+  Player --> (Pause/Resume)
+  Player --> (Save Game)
+  Player --> (Load Game)
+  Player --> (View Controls)
+  Player --> (Change Settings)
+  Player --> (View High Scores)
+  Player --> (Select Game Mode)
+  Player --> (Use Power-up)
+  Player --> (Destroy Obstacle)
+  
+  (Start Game) --> (Initialize Game)
+  (Move Snake) ..> (Collision Check) : includes
+  (Collision Check) --> (Collision Detected)
+  (Collision Detected) --> (Show Game Over)
+  
+  (Save Game) --> (Auto-save)
+}
+
+@enduml

@@ -1,0 +1,100 @@
+@startuml
+
+title Snake Game: Classic Remastered - Class Diagram
+
+package model {
+    class Snake {
+        - body: List<Point>
+        - direction: Direction
+        - nextDirection: Direction
+        + move()
+        + grow(int amount)
+        + collidesWithSelf(): boolean
+    }
+    
+    class Food {
+        - position: Point
+        - type: FoodType
+        - points: int
+        + getPosition(): Point
+        + getPoints(): int
+    }
+    
+    class Obstacle {
+        - position: Point
+        - type: ObstacleType
+        - health: int
+        + takeDamage(int damage)
+        + update(int width, int height)
+    }
+    
+    class PowerUp {
+        - position: Point
+        - type: PowerUpType
+        - duration: int
+        + activate()
+        + isExpired(): boolean
+    }
+    
+    class GameState {
+        - score: int
+        - gameMode: GameMode
+        - status: GameStatus
+        + start()
+        + pause()
+        + resume()
+        + stop()
+    }
+    
+    class Game {
+        - snake: Snake
+        - food: Food
+        - obstacles: List<Obstacle>
+        - gameState: GameState
+        + update()
+        + spawnFood()
+    }
+}
+
+package view {
+    class GamePanel {
+        - CELL_SIZE: int
+        + paintComponent(Graphics)
+    }
+    
+    class GameFrame {
+        + showScreen(String)
+    }
+}
+
+package controller {
+    class InputController {
+        + keyPressed(KeyEvent)
+    }
+    
+    class GameController {
+        - gameLoop: GameLoop
+        + start()
+        + update()
+    }
+}
+
+package service {
+    class GameService {
+        + saveGame(GameState, int): boolean
+        + loadGame(int): GameState
+        + saveProfile(UserProfile): boolean
+    }
+}
+
+Game --> Snake
+Game --> Food
+Game --> Obstacle
+Game --> PowerUp
+Game --> GameState
+GameController --> Game
+GameController --> InputController
+GamePanel --> Game
+GameService --> GameState
+
+@enduml

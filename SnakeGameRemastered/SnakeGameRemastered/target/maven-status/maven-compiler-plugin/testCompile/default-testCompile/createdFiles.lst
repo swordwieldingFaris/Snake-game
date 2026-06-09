@@ -1,0 +1,5 @@
+com\snakegame\model\GameStateTest.class
+com\snakegame\integration\GameIntegrationTest.class
+com\snakegame\model\FoodTest.class
+com\snakegame\model\GameTest.class
+com\snakegame\model\SnakeTest.class
